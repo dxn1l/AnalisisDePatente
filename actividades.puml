@@ -1,0 +1,34 @@
+@startuml
+start
+
+:Iniciar sistema;
+:Detectar presencia del dedo con sensor ToF;
+if (Dedo detectado?) then (Sí)
+    :Activar módulo de iluminación LED;
+    :Capturar imagen con sensor CMOS;
+    :Procesar imagen;
+    :Segmentar huella dactilar;
+    :Mejorar calidad de imagen;
+    :Detectar vitalidad (anti-spoofing);
+
+    if (Huella válida?) then (Sí)
+        :Extraer patrones biométricos (minucias);
+        :Comparar con base de datos;
+
+        if (Coincidencia encontrada?) then (Sí)
+            :Autenticación exitosa;
+            :Conceder acceso;
+        else (No)
+            :Autenticación fallida;
+            :Solicitar nuevo intento;
+        endif
+    else (No)
+        :Huella rechazada;
+        :Solicitar reintento;
+    endif
+else (No)
+    :Esperar interacción del usuario;
+endif
+
+stop
+@enduml
