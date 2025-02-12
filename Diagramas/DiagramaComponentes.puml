@@ -1,0 +1,39 @@
+@startuml
+package "Cerradura Electrónica" {
+    [Módulo Mecánico] as mecanico
+    [Módulo Electrónico] as electronico
+    [Módulo de Comunicaciones] as comunicaciones
+}
+
+package "Módulo Mecánico" {
+    [Sistema de Bloqueo] as sistemabloqueo
+    [Carcasa y Materiales de Alta Resistencia] as carcasa
+}
+
+package "Módulo Electrónico" {
+    [Motor de Precisión]
+    [Sensores de Posición] as sensores
+    [Lectura RFID y Credenciales Móviles] as credenciales
+    [Bluetooth para Actualizaciones] as bluetooth
+}
+
+package "Módulo de Comunicaciones" {
+    [RS-485] as rs
+    [NFC]
+    [Bluetooth]
+}
+
+mecanico -[Hidden]-> electronico
+mecanico -[Hidden]-> comunicaciones
+
+sistemabloqueo --> mecanico
+carcasa --> mecanico
+
+sensores --> electronico
+credenciales --> electronico
+bluetooth --> electronico
+
+rs --> comunicaciones
+NFC --> comunicaciones
+Bluetooth --> comunicaciones
+@enduml
