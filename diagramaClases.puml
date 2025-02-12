@@ -1,0 +1,73 @@
+@startuml
+class SistemaBiometrico {
+  - baseDatosHuella: BaseDatos
+  - moduloCaptura: ModuloCaptura
+  - moduloIluminacion: ModuloLuz
+  - procesadorBiometrico: ProcesadorBiometrico
+  + autenticarHuella(): Boolean
+  + registrarHuella(): void
+}
+
+class Usuario {
+  - id: String
+  - nombre: String
+  - credenciales: String
+  + solicitarAutenticacion(): Boolean
+}
+
+class Administrador {
+  - id: String
+  - nombre: String
+  + agregarUsuario(Usuario): void
+  + eliminarUsuario(Usuario): void
+  + gestionarHuellas(): void
+}
+
+class ModuloCaptura {
+  - sensorCMOS: SensorCMOS
+  - sensorToF: SensorToF
+  + capturarImagen(): Imagen
+}
+
+class SensorCMOS {
+  - resolucion: String
+  + obtenerImagen(): Imagen
+}
+
+class SensorToF {
+  - distancia: Double
+  - inclinacion: Double
+  + medirDistancia(): Double
+}
+
+class ModuloLuz {
+  - leds: List<LED>
+  + activarIluminacion(): void
+}
+
+class ProcesadorBiometrico {
+  - algoritmoSegmentacion: String
+  - algoritmoAntiSpoofing: String
+  + procesarHuella(Imagen): Caracteristicas
+}
+
+class BaseDatos {
+  - huellasRegistradas: List<Huella>
+  + buscarHuella(Caracteristicas): Boolean
+  + almacenarHuella(Huella): void
+}
+
+SistemaBiometrico --> ModuloCaptura
+SistemaBiometrico --> ModuloLuz
+SistemaBiometrico --> ProcesadorBiometrico
+SistemaBiometrico --> BaseDatos
+
+ModuloCaptura --> SensorCMOS
+ModuloCaptura --> SensorToF
+ModuloLuz --> LED
+BaseDatos --> Huella
+
+Usuario --> SistemaBiometrico : "Solicita autenticación"
+Administrador --> SistemaBiometrico : "Gestiona usuarios y huellas"
+Administrador --> Usuario : "Gestiona"
+@enduml
