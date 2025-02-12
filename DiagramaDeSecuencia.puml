@@ -1,0 +1,30 @@
+@startuml
+actor Usuario
+participant "Sensor de Proximidad" as SP
+participant "Módulo de Iluminación" as MI
+participant "Módulo de Captura de Imagen" as CI
+participant "Módulo de Procesamiento" as MP
+participant "Base de Datos de Usuarios" as BD
+participant "Sistema de Control de Acceso" as SCA
+
+Usuario -> SP: Coloca la mano en la zona de captura
+SP -> MI: Detecta la mano y activa la iluminación
+MI -> CI: Mejora la visibilidad y activa la cámara
+CI -> MP: Captura imagen de las huellas
+MP -> MP: Segmenta y mejora imagen
+
+alt Imagen válida
+    MP -> BD: Compara huella con registros
+    BD -> MP: Responde con coincidencia o no coincidencia
+    alt Huella coincide
+        MP -> SCA: Usuario autenticado
+        SCA -> Usuario: Acceso concedido
+    else Huella no coincide
+        MP -> SCA: Usuario no identificado
+        SCA -> Usuario: Acceso denegado
+    end
+else Imagen no válida
+    MP -> Usuario: Error en la captura, reintentar
+end
+
+@enduml
