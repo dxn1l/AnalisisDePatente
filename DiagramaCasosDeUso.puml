@@ -1,0 +1,37 @@
+@startuml
+
+actor Usuario
+actor Administrador
+
+usecase "Detectar presencia del usuario" as D1
+usecase "Capturar huella dactilar" as D2
+usecase "Procesar imagen de la huella" as D3
+usecase "Verificar identidad" as D4
+usecase "Autorizar acceso" as D5
+usecase "Denegar acceso" as D6
+usecase "Registrar nuevo usuario" as D7
+usecase "Administrar base de datos" as D8
+usecase "Configurar parámetros del sistema" as D9
+usecase "Actualizar software del dispositivo" as D10
+usecase "Monitorear registros de acceso" as D11
+usecase "Gestionar roles y permisos" as D12
+
+Usuario --> D1
+Usuario --> D2
+D1 --> D2
+D2 --> D3
+D3 --> D4
+D4 --> D5 : "Identidad confirmada"
+D4 --> D6 : "Identidad no confirmada"
+Administrador --> D7
+Administrador --> D8
+Administrador --> D9
+Administrador --> D10
+Administrador --> D11
+Administrador --> D12
+
+D8 <-- D12 : "Usa gestión de permisos"
+D11 <-- D8 : "Consulta registros"
+D9 <-- D10 : "Depende de actualización"
+
+@enduml
