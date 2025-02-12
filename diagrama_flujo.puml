@@ -1,0 +1,20 @@
+@startuml
+start
+  :Detectar presencia del dedo;
+  if (Posición y distancia correcta?) then (Sí)
+    :Activar iluminación (LEDs);
+    :Capturar imagen (Sensor CMOS);
+    :Mejorar calidad y segmentar huella;
+    :Extraer características biométricas (minucias);
+    :Detectar vitalidad (Anti-Spoofing);
+    :Comparar con base de datos de referencia;
+    if (Coincidencia encontrada?) then (Sí)
+      :Autenticación exitosa;
+    else (No)
+      :Intento fallido / Reintentar;
+    endif
+  else (No)
+    :Reintentar detección;
+  endif
+stop
+@enduml
