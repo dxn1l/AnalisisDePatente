@@ -45,8 +45,9 @@ Este diagrama explica el proceso completo de verificación de la huella del usua
 ### 6. **Diagrama de Componentes**
 Este diagrama modela la división en los componentes individuales del programa.
 
-- Archivo : `DiagramaDeComponentes.puml`
+- Archivos : `DiagramaDeComponentes.puml` y `DiagramaComponenteBiometrico.puml`
 
+![Diagrama de Componentes](/SVG/ComponentesBiometricos.svg)
 ![Diagrama de Componentes](/SVG/Componentes.svg)
 
 ## Objetivo General
