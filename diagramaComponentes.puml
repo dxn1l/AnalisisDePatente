@@ -1,0 +1,48 @@
+@startuml
+package "Sistema Biométrico" {
+    [Interfaz Usuario] -down-> [Módulo de Autenticación]
+    [Interfaz Administrador] -down-> [Módulo de Gestión]
+
+    component "Módulo de Captura" {
+        [Sensor CMOS]
+        [Sensor ToF]
+        [Módulo de Iluminación]
+        [Módulo de Captura] --> [Sensor CMOS]
+        [Módulo de Captura] --> [Sensor ToF]
+        [Módulo de Captura] --> [Módulo de Iluminación]
+    }
+
+    component "Procesador Biométrico" {
+        [Algoritmo de Segmentación]
+        [Algoritmo Anti-Spoofing]
+        [Extractor de Características]
+        [Procesador Biométrico] --> [Algoritmo de Segmentación]
+        [Procesador Biométrico] --> [Algoritmo Anti-Spoofing]
+        [Procesador Biométrico] --> [Extractor de Características]
+    }
+
+    component "Base de Datos Biométrica" {
+        [Gestor de Huellas]
+        [Base de Datos]
+        [Base de Datos Biométrica] --> [Gestor de Huellas]
+    }
+
+    component "Módulo de Autenticación" {
+        [Autenticador]
+        [Módulo de Autenticación] --> [Procesador Biométrico]
+        [Módulo de Autenticación] --> [Base de Datos Biométrica]
+    }
+
+    component "Módulo de Gestión" {
+        [Gestor de Usuarios]
+        [Módulo de Gestión] --> [Gestor de Usuarios]
+        [Módulo de Gestión] --> [Base de Datos Biométrica]
+    }
+
+    [Interfaz Usuario] --> [Módulo de Autenticación] : "Solicita autenticación"
+    [Interfaz Administrador] --> [Módulo de Gestión] : "Gestiona usuarios y huellas"
+    [Módulo de Autenticación] --> [Módulo de Captura] : "Solicita captura de imagen"
+    [Módulo de Autenticación] --> [Procesador Biométrico] : "Envía imagen procesada"
+    [Procesador Biométrico] --> [Base de Datos Biométrica] : "Consulta/actualiza huellas"
+}
+@enduml
