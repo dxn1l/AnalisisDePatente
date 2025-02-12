@@ -16,8 +16,14 @@ Este diagrama representa las interacciones entre los actores (usuarios y adminis
 ### 2. **Diagrama de Clases/Objetos**
 Este diagrama modela los objetos involucrados en el sistema y sus relaciones. Incluye clases como `Usuario`, `Administrador`, `SistemaBiometrico` y `BaseDeDatos`.
 
-- Archivo: `DiagramaObjetos.puml`
+- Archivo: `DiagramaDeObjetos.puml`
 - Objetivo: Representar la estructura interna del sistema y las interacciones entre los diferentes componentes.
+
+### 3. **Diagrama de Flujo**
+Este diagrama modela [COMPLETAR INFRO]
+- Archivo: `DiagramaDeFlujo.puml`
+- Objetivo: [COMPLETAR INFO]
+
 
 ## Objetivo General
 El objetivo de estos diagramas es proporcionar una representación visual clara y estructurada del **Sistema Biométrico de Huellas Dactilares sin Contacto**, facilitando su comprensión, diseño e implementación.
