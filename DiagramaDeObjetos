@@ -1,0 +1,48 @@
+@startuml
+
+class Usuario {
+    - id: int
+    - nombre: String
+    - huellaDactilar: Imagen
+    + autenticar(): boolean
+}
+
+class Administrador {
+    - id: int
+    - nombre: String
+    + gestionarUsuarios()
+    + administrarBaseDatos()
+}
+
+class HuellaDactilar {
+    - imagen: Imagen
+    + procesarHuella(): DatosBiometricos
+}
+
+class SistemaBiometrico {
+    + detectarPresencia(Usuario)
+    + capturarHuella(Usuario)
+    + procesarHuella(HuellaDactilar)
+    + verificarIdentidad(DatosBiometricos): boolean
+    + autorizarAcceso(Usuario)
+    + denegarAcceso(Usuario)
+}
+
+class BaseDeDatos {
+    - usuarios: List<Usuario>
+    + almacenarDatos(DatosBiometricos)
+    + buscarUsuario(DatosBiometricos): Usuario
+}
+
+class RegistroAccesos {
+    - registros: List<Acceso>
+    + registrarAcceso(Usuario, boolean)
+}
+
+Usuario -- SistemaBiometrico
+Administrador -- BaseDeDatos
+HuellaDactilar -- SistemaBiometrico
+SistemaBiometrico -- BaseDeDatos
+SistemaBiometrico -- RegistroAccesos
+
+@enduml
