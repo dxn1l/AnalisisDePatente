@@ -31,4 +31,8 @@ El objetivo de estos diagramas es proporcionar una representación visual clara 
 ## Requisitos
 Para visualizar los diagramas, se puede utilizar PlantUML o herramientas en línea como [PlantUML Online](https://www.plantuml.com/plantuml/).
 
+## Link al repositorio
+
+https://github.com/dxn1l/AnalisisDePatente.git
+
 
